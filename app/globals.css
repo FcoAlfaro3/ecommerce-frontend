@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/*
+  Mostrador — tokens de diseño
+  Papel frío, tinta verde pino y una etiqueta de precio amarilla tipo
+  góndola como único elemento llamativo. Sin fuentes web: se usa la
+  tipografía del sistema para no penalizar LCP ni CLS.
+*/
+@theme {
+  --color-paper: #f3f5f4;
+  --color-surface: #ffffff;
+  --color-pine: #173b33;
+  --color-pine-soft: #2b5a4f;
+  --color-muted: #5b6b66;
+  --color-line: #d6dedb;
+  --color-tag: #f2c230;
+  --color-tag-ink: #3a2c00;
+  --color-ok: #23704d;
+  --color-ok-bg: #e2f2ea;
+  --color-warn: #8a5a00;
+  --color-warn-bg: #fdf1d3;
+  --color-bad: #a3352b;
+  --color-bad-bg: #f9e3e0;
+
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-pine);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-tag);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Etiqueta de precio tipo góndola: el elemento memorable de la tienda. */
+.price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15em;
+  background: var(--color-tag);
+  color: var(--color-tag-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  padding: 0.35em 0.55em 0.3em;
+  border-radius: 2px 10px 10px 2px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 70%, 4px 50%, 0 30%);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e6ebe9 25%, #eef2f0 50%, #e6ebe9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  font-size: 1rem;
+  color: var(--color-pine);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-pine-soft);
+  box-shadow: 0 0 0 3px rgb(242 194 48 / 0.45);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  padding: 0.7rem 1.15rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 120ms ease;
+}
+
+.btn-primary {
+  background: var(--color-pine);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-pine-soft);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-quiet {
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-pine);
+}
+
+.btn-quiet:hover {
+  border-color: var(--color-pine-soft);
+}
